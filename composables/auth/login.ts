@@ -1,4 +1,4 @@
-import { useUser } from "@/composables/auth/user";
+                                                       import { useUser } from "@/composables/auth/user";
 import { auth_api } from "@/api_factory/modules/auth";
 import { useCustomToast } from '@/composables/core/useCustomToast'
 
@@ -35,7 +35,7 @@ export const use_auth_login = () => {
         toastType: "success",
         duration: 3000
       });
-      router.push("/dashboard");
+      // router.push("/dashboard");
       // window.location.href = "/dashboard"
     }
   };

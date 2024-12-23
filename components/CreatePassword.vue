@@ -189,6 +189,13 @@
             >
               {{ loading ? 'Processing...' : 'Update your passcode' }}
             </button>
+            <!-- <button
+              :disabled="loading"
+              type="submit"
+              class="w-full disabled:cursor-not-allowed disabled:opacity-25 bg-[#2F6D67] text-white py-3.5 rounded-md hover:bg-[#2F6D67] transition"
+            >
+              {{ loading ? 'Processing...' : 'Update your passcode' }}
+            </button> -->
           </div>
         </form>
   

@@ -11,28 +11,47 @@ const payload = ref({
 export const useAddBankAccount = () => {
   const loading = ref(false);
   const { showToast } = useCustomToast();
+  const router = useRouter()
 
   const addBankAccount = async () => {
     loading.value = true;
-    try {
-      const res = await payment_api.$_add_bank_account(payload.value);
-      showToast({
+    const res = await payment_api.$_add_bank_account(payload.value);
+    if(res.status == 200){
+       showToast({
         title: "Success",
         message: "Bank account added successfully",
         toastType: "success",
         duration: 3000,
       });
-      return res;
-    } catch (error: any) {
+      router.push('/dashboard/payments?tab=beneficiaries')
+    } else {
       showToast({
         title: "Error",
-        message: error.response.data.message || "Failed to add bank account",
+        message: res.data.message || "Something went wrong",
         toastType: "error",
         duration: 3000,
       });
-    } finally {
-      loading.value = false;
     }
+    loading.value = false;
+    // try {
+    //   const res = await payment_api.$_add_bank_account(payload.value);
+    //   showToast({
+    //     title: "Success",
+    //     message: "Bank account added successfully",
+    //     toastType: "success",
+    //     duration: 3000,
+    //   });
+    //   return res;
+    // } catch (error: any) {
+    //   showToast({
+    //     title: "Error",
+    //     message: error.response.data.message || "Failed to add bank account",
+    //     toastType: "error",
+    //     duration: 3000,
+    //   });
+    // } finally {
+    //   loading.value = false;
+    // }
   };
 
   const setPayload = (data: any) => {

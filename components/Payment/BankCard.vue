@@ -2,11 +2,19 @@
   <div class="w-full max-w-lg py-4 space-y-3">
     <!-- Display the list of accounts or the add bank account form based on query parameter -->
     <div v-if="!isAddingAccount" class="space-y-3">
+      <div class="">
+          <button
+            @click="goToAddAccount"
+            class="text-sm py-2.5 outline-none border-none px-6 bg-teal-700 text-white rounded-lg border"
+          >
+           Add new account
+          </button>
+        </div>
       <div
         v-if="!loading && accounts?.length"
         v-for="(account, index) in accountsWithColors"
         :key="index"
-        class="relative p-6 rounded-lg text-white"
+        class="relative p-6 rounded-lg h-44 text-white"
         :class="account.bgColor"
       >
         <div class="flex flex-col space-y-2">
@@ -45,36 +53,15 @@
         <h2 class="text-gray-800 text-sm">No transactions available</h2>
       </div>
       <div>
-        <h2 class="text-lg font-semibold mb-4 text-center">Add bank account</h2>
-        <div class="flex justify-center">
+        <!-- <h2 class="text-lg font-semibold mb-4 text-center">Add bank account</h2> -->
+        <!-- <div class="flex justify-center">
           <button
             @click="goToAddAccount"
-            class="w-10 h-10 flex items-center justify-center bg-teal-700 text-white rounded-full border border-dashed"
+            class="text-sm py-2.5 outline-none border-none px-6 bg-teal-700 text-white rounded-lg border"
           >
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="1"
-                y="1"
-                width="38"
-                height="38"
-                rx="19"
-                stroke="#CCCCCC"
-                stroke-width="2"
-                stroke-dasharray="4 4"
-              />
-              <path
-                d="M20 8C13.388 8 8 13.388 8 20C8 26.612 13.388 32 20 32C26.612 32 32 26.612 32 20C32 13.388 26.612 8 20 8ZM24.8 20.9H20.9V24.8C20.9 25.292 20.492 25.7 20 25.7C19.508 25.7 19.1 25.292 19.1 24.8V20.9H15.2C14.708 20.9 14.3 20.492 14.3 20C14.3 19.508 14.708 19.1 15.2 19.1H19.1V15.2C19.1 14.708 19.508 14.3 20 14.3C20.492 14.3 20.9 14.708 20.9 15.2V19.1H24.8C25.292 19.1 25.7 19.508 25.7 20C25.7 20.492 25.292 20.9 24.8 20.9Z"
-                fill="#2F6D67"
-              />
-            </svg>
+           Add new account
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -359,10 +346,10 @@ import { useRoute, useRouter } from "vue-router";
 // Define an array of possible colors
 const colorOptions = [
   { bgColor: "bg-teal-700", circleClass: "bg-teal-600" },
-  { bgColor: "bg-rose-500", circleClass: "bg-rose-400" },
-  { bgColor: "bg-blue-500", circleClass: "bg-blue-400" },
-  { bgColor: "bg-green-500", circleClass: "bg-green-400" },
-  { bgColor: "bg-yellow-500", circleClass: "bg-yellow-400" },
+  // { bgColor: "bg-rose-500", circleClass: "bg-rose-400" },
+  // { bgColor: "bg-blue-500", circleClass: "bg-blue-400" },
+  // { bgColor: "bg-green-500", circleClass: "bg-green-400" },
+  // { bgColor: "bg-yellow-500", circleClass: "bg-yellow-400" },
 ];
 
 // Function to assign random colors
