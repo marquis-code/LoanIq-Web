@@ -4,6 +4,7 @@
     <h2 class="text-[#687181] text-lg font-medium mb-6">
       Choose an investment product to get started
     </h2>
+    <!-- {{ products }} -->
 
     <!-- Investment Product Cards Grid -->
     <div class="grid grid-cols-1 cursor-pointer sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -35,8 +35,8 @@ export const use_auth_login = () => {
         toastType: "success",
         duration: 3000
       });
-      // router.push("/dashboard");
-      // window.location.href = "/dashboard"
+      router.push("/dashboard");
+      window.location.href = "/dashboard"
     }
   };
   return { credential, login, loading, isFormDisabled };

@@ -12,7 +12,7 @@ export const useFetchInvestmentProducts = () => {
         try {
             const res = await investment_api.$_fetch_investment_products();
             console.log(res, 'res here')
-            products.value = res.data.data || [];
+            products.value = res?.data?.data?.investmentProducts || [];
         } catch (error: any) {
             showToast({
                 title: "Error",
