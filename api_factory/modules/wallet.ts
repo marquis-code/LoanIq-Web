@@ -16,5 +16,9 @@ export const wallet_api = {
 	$_resolve_account_number: (bankCode: string | number, accountNumber: string | number) => {
 		const url = `/wallet/resolve-account/${bankCode}/${accountNumber}`;
 		return GATEWAY_ENDPOINT.get(url)
+	},
+	$_debit_wallet: (payload: any) => {
+		const url = '/wallet/debit-wallet';
+		return GATEWAY_ENDPOINT.post(url, payload)
 	}
 }
