@@ -4,7 +4,7 @@ import { useDebitWallet } from '@/composables/modules/wallet/useDebitWallet'
 import { useFetchSavedAccounts } from '@/composables/modules/payment/useFetchSavedAccounts'
 import { useMaskAccount } from '@/composables/core/useMaskAccount'
 // const showAccountDetails = ref(false);
-const showTransferFailed = ref(true);
+const showTransferFailed = ref(false);
 const showTransferSuccess = ref(false);
 
 const emit = defineEmits(['close'])
