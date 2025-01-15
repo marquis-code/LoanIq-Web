@@ -395,31 +395,13 @@ import FundTransfer from './Payment/FundTransfer.vue'
   const closeFundTransferModal = () => {
     openTransferModal.value = false
   }
-  // const profile = defineProps({
-  //   loading: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   profileInfoObj: {
-  //     type: Object,
-  //     default: () => {}
-  //   }
-  // })
+
 const openFundTransferModal = ref(false)
   function handleCopy(text: string | undefined) {
   copyToClipboard(text);
 }
 
 
-//   const formattedWalletBalance = computed(() => {
-//   const balance = profileInfoObj?.value?.wallet?.balance || 0;  
-//   return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(balance);
-// });
-
-// const formattedLedgerBalance = computed(() => {
-//   const balance = profileInfoObj?.value?.wallet?.ledgerBalance || 0;  
-//   return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(balance);
-// });
 
 // No specific logic required
 </script>
