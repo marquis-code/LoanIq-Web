@@ -1,7 +1,5 @@
 export default {
   ssr: false,
-  target: "static",
-
   app: {
     head: {
       title: "LoanIQ",
