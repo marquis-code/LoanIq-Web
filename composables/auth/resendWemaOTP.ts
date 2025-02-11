@@ -36,6 +36,7 @@ export const useResendWemaOtp = () => {
   const { userId } = getEncryptedData() || {};
 
   const resendWemaOtp = async () => {
+    const router = useRouter();
     loading.value = true;
 
     const payload = {
