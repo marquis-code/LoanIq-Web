@@ -288,30 +288,38 @@
     
               
                   <!-- Wallet Transactions -->
-                  <div class="bg-white p-6  space-y-16">
-                   <div class="flex justify-between items-center ">
-                    <h3 class="text-lg font-semibold text-[#7D8799]">Wallet transactions</h3>
-                  <div class="border rounded-md">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 10C15.3458 10 14 8.65421 14 7C14 5.34579 15.3458 4 17 4C18.6542 4 20 5.34579 20 7C20 8.65421 18.6542 10 17 10ZM17 5.39252C16.1215 5.39252 15.4019 6.11215 15.4019 6.99065C15.4019 7.86916 16.1215 8.58878 17 8.58878C17.8785 8.58878 18.5981 7.86916 18.5981 6.99065C18.5981 6.11215 17.8785 5.39252 17 5.39252Z" fill="#7D8799"/>
-                        <path d="M7.00001 10C5.3458 10 4 8.65421 4 7C4 5.34579 5.3458 4 7.00001 4C8.65421 4 10 5.34579 10 7C10 8.65421 8.65421 10 7.00001 10ZM7.00001 5.39252C6.1215 5.39252 5.40187 6.11215 5.40187 6.99066C5.40187 7.86916 6.1215 8.58879 7.00001 8.58879C7.87851 8.58879 8.59813 7.86916 8.59813 6.99066C8.59813 6.11215 7.88786 5.39252 7.00001 5.39252Z" fill="#7D8799"/>
-                        <path d="M17 20C15.3458 20 14 18.6542 14 17C14 15.3458 15.3458 14 17 14C18.6542 14 20 15.3458 20 17C20 18.6542 18.6542 20 17 20ZM17 15.3925C16.1215 15.3925 15.4019 16.1121 15.4019 16.9907C15.4019 17.8692 16.1215 18.5888 17 18.5888C17.8785 18.5888 18.5981 17.8692 18.5981 16.9907C18.5981 16.1121 17.8785 15.3925 17 15.3925Z" fill="#7D8799"/>
-                        <path d="M7.00001 20C5.3458 20 4 18.6542 4 17C4 15.3458 5.3458 14 7.00001 14C8.65421 14 10 15.3458 10 17C10 18.6542 8.65421 20 7.00001 20ZM7.00001 15.3925C6.1215 15.3925 5.40187 16.1121 5.40187 16.9907C5.40187 17.8692 6.1215 18.5888 7.00001 18.5888C7.87851 18.5888 8.59813 17.8692 8.59813 16.9907C8.59813 16.1121 7.88786 15.3925 7.00001 15.3925Z" fill="#7D8799"/>
-                        </svg>
-                  </div>
+                  <div class="">
+                   <!-- <div  class=""> -->
+                    <!-- <h3 class="text-lg font-semibold text-[#7D8799]">Wallet transactions</h3> -->
+                        <PaymentTransactionHistory  />
+                        <!-- <div class="border rounded-md">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M17 10C15.3458 10 14 8.65421 14 7C14 5.34579 15.3458 4 17 4C18.6542 4 20 5.34579 20 7C20 8.65421 18.6542 10 17 10ZM17 5.39252C16.1215 5.39252 15.4019 6.11215 15.4019 6.99065C15.4019 7.86916 16.1215 8.58878 17 8.58878C17.8785 8.58878 18.5981 7.86916 18.5981 6.99065C18.5981 6.11215 17.8785 5.39252 17 5.39252Z" fill="#7D8799"/>
+                              <path d="M7.00001 10C5.3458 10 4 8.65421 4 7C4 5.34579 5.3458 4 7.00001 4C8.65421 4 10 5.34579 10 7C10 8.65421 8.65421 10 7.00001 10ZM7.00001 5.39252C6.1215 5.39252 5.40187 6.11215 5.40187 6.99066C5.40187 7.86916 6.1215 8.58879 7.00001 8.58879C7.87851 8.58879 8.59813 7.86916 8.59813 6.99066C8.59813 6.11215 7.88786 5.39252 7.00001 5.39252Z" fill="#7D8799"/>
+                              <path d="M17 20C15.3458 20 14 18.6542 14 17C14 15.3458 15.3458 14 17 14C18.6542 14 20 15.3458 20 17C20 18.6542 18.6542 20 17 20ZM17 15.3925C16.1215 15.3925 15.4019 16.1121 15.4019 16.9907C15.4019 17.8692 16.1215 18.5888 17 18.5888C17.8785 18.5888 18.5981 17.8692 18.5981 16.9907C18.5981 16.1121 17.8785 15.3925 17 15.3925Z" fill="#7D8799"/>
+                              <path d="M7.00001 20C5.3458 20 4 18.6542 4 17C4 15.3458 5.3458 14 7.00001 14C8.65421 14 10 15.3458 10 17C10 18.6542 8.65421 20 7.00001 20ZM7.00001 15.3925C6.1215 15.3925 5.40187 16.1121 5.40187 16.9907C5.40187 17.8692 6.1215 18.5888 7.00001 18.5888C7.87851 18.5888 8.59813 17.8692 8.59813 16.9907C8.59813 16.1121 7.88786 15.3925 7.00001 15.3925Z" fill="#7D8799"/>
+                              </svg>
+                        </div> -->
                         
-                   </div>
-                    <div class="flex flex-col items-center space-y-4">
-                     <div class="flex justify-center items-center flex-col">
-                        <p class="text-[#323740] font-semibold text-xl">No transactions yet</p>
-                        <p class="text-[#687181]">Fund your account to get started</p>
-                     </div>
-                      <img src="@/assets/img/withdrawal.png" alt="No transactions" class="w-24" />
+                   <!-- </div> -->
+                    <!-- <div class="flex flex-col items-center space-y-4">
+                        <div class="flex justify-center items-center flex-col">
+                            <p class="text-[#323740] font-semibold text-xl">No transactions yet</p>
+                            <p class="text-[#687181]">Fund your account to get started</p>
+                        </div>
+                          <img src="@/assets/img/withdrawal.png" alt="No transactions" class="w-24" />
                     </div>
-                  </div>
+                    <section class="w-full rounded-lg max-w-lg">
+                      <div
+                        class="rounded-md h-24 bg-gray-100 animate-pulse p-4 w-full mx-auto mt-10"
+                      ></div>
+                    </section> -->
+                    </div>
+
+                    
               
                   <!-- Download App Section -->
-                  <div class="bg-white p-6 rounded-2xl space-y-5 text-center border mt-6 m-4">
+                  <!-- <div class="bg-white p-6 rounded-2xl space-y-5 text-center border mt-6 m-4">
                     <h3 class="text-2xl font-medium  mb-4">Download our App</h3>
                     <p class="text-[#828282] mb-4 leading-relaxed">
                         Maecenas suspendisse velit nibh aliquam enim diam adipiscing risus quis. Velit.
@@ -320,7 +328,7 @@
                       <img src="@/assets/icons/apple-store.svg" alt="App Store" class="w- h-10 lg:h-12" />
                       <img src="@/assets/icons/google-store.svg" alt="Google Play" class="w- h-10 lg:h-12" />
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 
           <!-- <div class="bg-white p-4 lg:p-6 rounded-lg shadow-lg">
@@ -381,6 +389,7 @@
   import { copyToClipboard } from '@/utils/copy-clipboard';
   import { formatCurrency } from '@/utils/currencyUtils';
   import { useFetchStats } from '@/composables/modules/dashboard/fetchStats'
+
 import FundTransfer from './Payment/FundTransfer.vue'
   const { loading, profileInfoObj } = useFetchStats()
   const router = useRouter()

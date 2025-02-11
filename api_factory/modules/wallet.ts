@@ -1,8 +1,8 @@
 import { GATEWAY_ENDPOINT } from '../axios.config'
 
 export const wallet_api = {
-    $_fetch_transaction_history: () => {
-		const url = '/wallet/transaction-history'
+    $_fetch_transaction_history: (query: { startDate: string, endDate: string}) => {
+		const url = `/wallet/transaction-history?startDate=${query.startDate}&endDate=${query.endDate}`
 		return GATEWAY_ENDPOINT.get(url)
 	},
 	$_fetch_bank_list: () => {
