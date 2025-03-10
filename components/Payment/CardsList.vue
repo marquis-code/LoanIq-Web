@@ -1,5 +1,6 @@
 <template>
   <div class="space-y-4 max-w-xl">
+    {{ cardsList }}
     <!-- Display list of cards or the add new card form based on query parameter -->
     <div v-if="!isAddingCard">                                                                                                                                                                      
       <div
@@ -114,9 +115,11 @@
 
 <script setup lang="ts">
   import masterCard from '@/assets/icons/master-card.svg'
+  import { useFetchCards } from '@/composables/modules/payment/useFetchCards'
   import visaCard from '@/assets/icons/visa-card.svg'
 import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+const { cards: cardsList, loading } = useFetchCards()
 
 interface Card {
   id: number;

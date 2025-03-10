@@ -11,7 +11,7 @@ export const useFetchCards = () => {
         loading.value = true;
         try {
             const res = await payment_api.$_fetch_cards();
-            cards.value = res.data;
+            cards.value = res?.data?.data || [];
         } catch (error: any) {
             showToast({
                 title: "Error",
@@ -23,6 +23,10 @@ export const useFetchCards = () => {
             loading.value = false;
         }
     };
+
+    onMounted(() => {
+        fetchCards()
+    })
 
     return {
         fetchCards,

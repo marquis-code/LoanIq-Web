@@ -125,6 +125,7 @@ const verifyOtp = async () => {
 
 const handleResendOtp = async () => {
   // loading.value = true;
+  otp.value = null
   await resendOtp();
   otpResendTimer.value = 96;
   // loading.value = false;

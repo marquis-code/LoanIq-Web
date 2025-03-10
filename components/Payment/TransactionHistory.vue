@@ -1,5 +1,6 @@
 <template>
     <div class="py-4">
+        <!-- Header and Filter section remains the same -->
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-xl font-medium text-gray-700">Transaction list</h3>
             
@@ -42,7 +43,7 @@
         </div>
 
         <!-- Transaction List -->
-        <div v-if="!processing && filteredTransactions.length" class="space-y-2">
+        <div v-if="!loading && filteredTransactions?.length" class="space-y-2">
             <div
                 v-for="transaction in paginatedTransactions"
                 :key="transaction.referenceId"
@@ -50,7 +51,7 @@
             >
                 <div class="flex items-center space-x-4">
                     <div :class="[
-                        'w-10 h-10 rounded-full flex items-center justify-center',
+                        'w-7 h-7 rounded-full flex items-center justify-center',
                         transaction.creditType === 'Debit' ? 'bg-red-100' : 'bg-green-100'
                     ]">
                         <svg
@@ -67,18 +68,18 @@
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium max-w-xl text-gray-900">
-                            {{ transaction.narration }}
+                        <p class="text-sm font-medium text-gray-900">
+                            {{ transaction?.narration ?? 'Nil' }}
                         </p>
                         <div class="flex items-center space-x-2 text-sm text-gray-500">
                             <span>{{ transaction.transactionDate }}</span>
-                            <span v-if="transaction.status" 
+                            <span v-if="transaction?.status" 
                                   :class="[
                                     'px-2 py-0.5 rounded-full text-xs',
                                     transaction.status === 'Successfull' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
                                   ]"
                             >
-                                {{ transaction.status }}
+                                {{ transaction?.status ?? 'Nil' }}
                             </span>
                         </div>
                     </div>
@@ -88,12 +89,12 @@
                     <p class="text-lg font-semibold text-gray-900">
                         ₦{{ formatAmount(transaction.amount) }}
                     </p>
-                    <p class="text-sm text-gray-500">{{ transaction.type }}</p>
+                    <p class="text-sm text-gray-500">{{ transaction?.type ?? 'Nil' }}</p>
                 </div>
             </div>
         </div>
 
-        <div v-else-if="!processing && !filteredTransactions.length" class="flex flex-col items-center space-y-4 mt-10">
+        <div v-else-if="!loading && !filteredTransactions?.length" class="flex flex-col items-center space-y-4 mt-10">
             <img src="@/assets/img/withdrawal.png" alt="No transactions" class="w-24" />
             <div class="text-center">
                 <p class="text-gray-900 font-semibold text-xl">No transactions yet</p>
@@ -114,8 +115,25 @@
             >
                 &laquo;
             </button>
+
+            <!-- First page -->
             <button
-                v-for="page in totalPages"
+                v-if="shouldShowFirst"
+                @click="goToPage(1)"
+                :class="[
+                    'px-3 py-1 rounded-full',
+                    1 === currentPage ? 'bg-red-500 text-white' : 'text-gray-600',
+                ]"
+            >
+                1
+            </button>
+
+            <!-- Left ellipsis -->
+            <span v-if="shouldShowLeftEllipsis" class="px-2 text-gray-600">...</span>
+
+            <!-- Page numbers -->
+            <button
+                v-for="page in visiblePages"
                 :key="page"
                 @click="goToPage(page)"
                 :class="[
@@ -125,6 +143,22 @@
             >
                 {{ page }}
             </button>
+
+            <!-- Right ellipsis -->
+            <span v-if="shouldShowRightEllipsis" class="px-2 text-gray-600">...</span>
+
+            <!-- Last page -->
+            <button
+                v-if="shouldShowLast"
+                @click="goToPage(totalPages)"
+                :class="[
+                    'px-3 py-1 rounded-full',
+                    totalPages === currentPage ? 'bg-red-500 text-white' : 'text-gray-600',
+                ]"
+            >
+                {{ totalPages }}
+            </button>
+
             <button
                 @click="goToPage(currentPage + 1)"
                 :disabled="currentPage === totalPages"
@@ -158,7 +192,7 @@ interface Transaction {
     isViewReceiptEnabled: boolean;
 }
 
-const { transactionHistory, loading: processing, query } = useFetchTransactionHistory();
+const { transactionHistory, loading, query } = useFetchTransactionHistory();
 
 // Filter dropdown state
 const isFilterOpen = ref(false);
@@ -166,10 +200,10 @@ const filters = ['All transactions', 'Credit', 'Debit'];
 const selectedFilter = ref('All transactions');
 
 // Date range picker model
-const dateRange = ref([query.value.startDate, query.value.endDate]);
+const dateRange = ref([null, null]);
 
-// Pagination
-const itemsPerPage = 8;
+// Pagination - Changed itemsPerPage to 5
+const itemsPerPage = 5;
 const currentPage = ref(1);
 
 // Watch for date range changes
@@ -188,14 +222,14 @@ watch(selectedFilter, () => {
 
 // Filter transactions based on selected filter and date range
 const filteredTransactions = computed(() => {
+    if (!transactionHistory.value) return [];
+    
     let filtered = transactionHistory.value;
 
-    // Apply transaction type filter
     if (selectedFilter.value !== 'All transactions') {
         filtered = filtered.filter((t: Transaction) => t.creditType === selectedFilter.value);
     }
 
-    // Apply date range filter
     if (dateRange.value[0] && dateRange.value[1]) {
         filtered = filtered.filter((t: Transaction) => {
             const transactionDate = new Date(t.date);
@@ -207,7 +241,7 @@ const filteredTransactions = computed(() => {
     return filtered;
 });
 
-// Paginated transactions
+// Paginated transactions - Now shows 5 items per page
 const paginatedTransactions = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     return filteredTransactions.value.slice(start, start + itemsPerPage);
@@ -216,6 +250,41 @@ const paginatedTransactions = computed(() => {
 // Calculate total pages
 const totalPages = computed(() => {
     return Math.ceil(filteredTransactions.value.length / itemsPerPage);
+});
+
+// Pagination visibility logic
+const visiblePages = computed(() => {
+    const delta = 2; // Reduced to show fewer pages in the pagination
+    let start = Math.max(currentPage.value - delta, 1);
+    let end = Math.min(currentPage.value + delta, totalPages.value);
+
+    // Adjust the start and end to show 5 pages when possible
+    const pagesInRange = end - start + 1;
+    if (pagesInRange < 5) {
+        if (start === 1) {
+            end = Math.min(5, totalPages.value);
+        } else if (end === totalPages.value) {
+            start = Math.max(1, totalPages.value - 4);
+        }
+    }
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+});
+
+const shouldShowFirst = computed(() => {
+    return visiblePages.value[0] > 1;
+});
+
+const shouldShowLast = computed(() => {
+    return visiblePages.value[visiblePages.value.length - 1] < totalPages.value;
+});
+
+const shouldShowLeftEllipsis = computed(() => {
+    return visiblePages.value[0] > 2;
+});
+
+const shouldShowRightEllipsis = computed(() => {
+    return visiblePages.value[visiblePages.value.length - 1] < totalPages.value - 1;
 });
 
 // Format amount with proper separators

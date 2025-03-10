@@ -8,4 +8,8 @@ export const dashboard_api = {
         const url = '/dashboard/profile/update'
         return GATEWAY_ENDPOINT.post(url, payload)
       },
+      $_get_notifications: () => {
+        let url = `/dashboard/notifications`;
+        return GATEWAY_ENDPOINT.get(url);
+      },
 }

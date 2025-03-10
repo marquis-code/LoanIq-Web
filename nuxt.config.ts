@@ -1,6 +1,7 @@
 export default {
   ssr: false,
   app: {
+    errorHandler: '~/layouts/error.vue',
     head: {
       title: "LoanIQ",
       script: [

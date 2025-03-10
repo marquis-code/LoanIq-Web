@@ -1,9 +1,10 @@
 <template>
-    <div class="">
-      <!-- Header -->
+  <main>
+    <PaymentTransactionHistory />
+  </main>
+    <!-- <div class="">
       <PaymentFilterButton />
   
-      <!-- Transaction List -->
      <section v-if="!fetching && transactionHistory.length" class="max-w-3xl mx-auto" >
       <ul class="">
         <li v-for="(transaction, index) in transactionHistory" :key="index" class="flex justify-between items-center py-4">
@@ -33,7 +34,6 @@
         </li>
       </ul>
   
-      <!-- Pagination -->
       <div class="flex justify-center items-center space-x-2 mt-6">
         <button @click="prevPage" class="p-2 rounded-full hover:bg-red-500 text-red-500 hover:text-white">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,7 +65,7 @@
         <img src="@/assets/img/empty-state.png" class="h-20 w-20" />
         <h2 class="text-gray-800 text-sm">No transactions available</h2>
       </div>
-    </div>
+    </div> -->
   </template>
   
   <script setup lang="ts">
