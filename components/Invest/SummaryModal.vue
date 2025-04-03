@@ -46,7 +46,6 @@
   
   function completeOrder() {
     emit('close');
-    // Additional order completion logic if necessary
   }
   </script>
   

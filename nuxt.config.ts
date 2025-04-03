@@ -34,12 +34,6 @@ export default {
     timeout: 10000, // Example: set timeout to 10 seconds
   },
 
-  // buildModules: [
-  //   '@nuxtjs/moment'
-  // ]
-  // alias: {
-  // 	'@': '/'
-  // },
   plugins: [],
 
   compatibilityDate: "2024-10-30",

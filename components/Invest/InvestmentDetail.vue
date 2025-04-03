@@ -76,19 +76,7 @@
             </select>
           </div>
 
-          <!-- <div>
-            <label class="text-[#7D8799] text-sm">Interest Tenor</label>
-            <select v-model="payload.interestPaymentSchedule"
-              class="w-full outline-none border-none p-2 py-3.5 text-sm border bg-[#F4F5F7] border-gray-300 rounded">
-              <option value="">Please select an Interest payment option</option>
-              <option :value="item" v-for="(item, idx) in product?.interestPaymentSchedule" :key="idx">{{ item }}
-              </option>
-            </select>
-          </div> -->
           <div>
-            <!-- <span class="text-red-500">Tenor(days) {{ payload.tenor }}</span><br />
-            <span class="text-red-500">Principal {{ payload.principal }}</span><br />
-            <span class="text-red-500">Rate {{ product?.interestRate }}</span> -->
             <label class="text-[#7D8799] text-sm">Investment Tenor (months) {{ payload?.tenor }}</label>
             <div class="flex items-center space-x-4 mt-3">
                <input
