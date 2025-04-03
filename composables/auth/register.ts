@@ -3,6 +3,7 @@ import CryptoJS from "crypto-js";
 import { useCustomToast } from "@/composables/core/useCustomToast";
 const credential = {
   bvn: ref(""),
+  phone: ref(""),
   email: ref(""),
 };
 
@@ -18,6 +19,7 @@ export const use_auth_register = () => {
 
     const payload = {
       bvn: credential.bvn.value,
+      phone: credential.phone.value,
       email: credential.email.value,
     };
 
