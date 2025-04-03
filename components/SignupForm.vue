@@ -16,7 +16,7 @@
           </div>
           <div class="mb-4">
             <label class="block text-[#7D8799] font-medium mb-1 text-sm" for="phone">Enter Your Phone Number</label>
-            <input type="phone" id="phone" v-model="credential.phone.value"
+            <input type="phone" id="phone" v-model="credential.phoneNumber.value"
               class="w-full px-4 py-4 bg-[#F4F5F7] outline-none border-[0.5px] border-[#F4F5F7] rounded-md focus:outline-none focus:border-green-500" />
           </div>
           <div class="mb-4">
